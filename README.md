@@ -1,1 +1,2 @@
 # Первая попытка подключения
+rughriugrogrigndgd

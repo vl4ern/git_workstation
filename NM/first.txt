@@ -1,0 +1,46 @@
+Print["Третеь задаие"]
+Print["При n = 10"]
+n = 10;
+A = Table[If[i==j,2n,1],{i,n},{j,n}];
+B = Table[(2*n-1)*i + (n*(n+1))/2 + (3*n-1)*(k-1),{i,n}];
+LinearSolve[A,B];
+Row[{"A = ",MatrixForm[A],"  " ,"B = ",MatrixForm[B]}]
+Print["Метод Якоби: "]
+eps = 10^-3;
+e = eps + 1;
+iter = 0;
+X = Table[0,{n}];
+While[e > eps,
+ Xnew =Table[(B[[i]] - Sum[If[j!=i,A[[i,j]]*X[[j]],0],{j,1,n}])/A[[i,i]],{i,1,n} ];
+ e = Max[Abs[Xnew-X]];
+ X = Xnew;
+ iter++];
+ Print["Количество итераций: ", iter]
+ MatrixForm[X]
+n = 20
+Print["При n = 20"]
+n = 20;
+A = Table[If[i==j,2n,1],{i,n},{j,n}];
+B = Table[(2*n-1)*i + (n*(n+1))/2 + (3*n-1)*(k-1),{i,n}];
+LinearSolve[A,B];
+Row[{"A = ",MatrixForm[A],"  " ,"B = ",MatrixForm[B]}]
+Print["Метод Якоби: "]
+eps = 10^-3;
+e = eps + 1;
+iter = 0;
+X = Table[0,{n}];
+While[e > eps,
+ Xnew =Table[(B[[i]] - Sum[If[j!=i,A[[i,j]]*X[[j]],0],{j,1,n}])/A[[i,i]],{i,1,n} ];
+ e = Max[Abs[Xnew-X]];
+ X = Xnew;
+ iter++];
+ Print["Количество итераций: ", iter]
+ MatrixForm[X]
+ 
+  Print["Метод Зуйделя: "]
+ While[e > eps, Xold = X
+ X[[i]] =Table[(B[[i]] - Sum[If[j<i,A[[i,j]]*X[[j]],0],{j,1,n}] -Sum[If[j > i,A[[i,j]]*Xold[[j]],0],{j,1,n}])/A[[i,i]],{i,1,n} ];
+ e = Max[Abs[X-Xold]];
+ iter++];
+ Print["Количество итераций: ", iter]
+ MatrixForm[X]

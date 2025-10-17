@@ -71,30 +71,24 @@ class Rule:
         return f"{self.number}: {self.condition} -> {self.action_true}; !{self.condition} -> {self.action_false}"
 
 class Program:
-    """Класс, представляющий программу машины Поста как набор правил"""
     def __init__(self):
         self.rules = {} 
         self.current_rule = 1  
     
     def add_rule(self, rule):
-        """Добавить правило в программу"""
         self.rules[rule.number] = rule
     
     def remove_rule(self, number):
-        """Удалить правило из программы"""
         if number in self.rules:
             del self.rules[number]
     
     def get_rule(self, number):
-        """Получить правило по номеру"""
         return self.rules.get(number)
     
     def view_rules(self):
-        """Просмотреть все правила (соответствует требованию просмотра правил)"""
         return "\n".join(str(rule) for num, rule in sorted(self.rules.items()))
     
     def load_from_stream(self, stream):
-        """Загрузить программу (набор правил) из потока"""
         for line in stream:
             line = line.strip()
             if not line or line.startswith('#'):
@@ -120,7 +114,6 @@ class Program:
                 continue
     
     def __str__(self):
-        """Строковое представление программы (набора правил)"""
         return self.view_rules()
 
 class Post_machine:
